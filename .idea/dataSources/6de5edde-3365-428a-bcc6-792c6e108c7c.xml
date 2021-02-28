@@ -790,7 +790,7 @@ false posixrules
     <database id="2" parent="1" name="javaee_dev">
       <ObjectId>16384</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>494</IntrospectionStateNumber>
+      <IntrospectionStateNumber>497</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="3" parent="1" name="postgres">

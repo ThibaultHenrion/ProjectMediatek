@@ -2,12 +2,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <%@ include file='./parts/styles.jsp' %>
+    <title>Mediatek menu</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<section class="section">
+    <div class='rows'>
+        <div class='row is-full'>
+            <div class='columns is-centered'>
+                <div class='column is-half is-full-mobile'>
+                    <h1 class="title"><%= "Mediatek menu" %></h1>
+                    <br/>
+                    <div class="box">
+                        <a class="button" href="login">login</a>
+                        <a class="button" href="./about.jsp">about</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
