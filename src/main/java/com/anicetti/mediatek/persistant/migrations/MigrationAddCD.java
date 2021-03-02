@@ -1,13 +1,6 @@
 package com.anicetti.mediatek.persistant.migrations;
 
-import com.anicetti.mediatek.persistant.ConnectionPool;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-public class MigrationAddDocuments implements Migration {
+public class MigrationAddCD implements Migration {
     @Override
     public String getName() {
         return "Add Documents";
@@ -16,21 +9,24 @@ public class MigrationAddDocuments implements Migration {
     @Override
     public String[] up() {
         return new String[] {
-                "CREATE TYPE type_doc AS ENUM ('LIVRE','CD','DVD')",
-                "CREATE TABLE documents (" +
-                "   id INTEGER PRIMARY KEY," +
-                "   name varchar(64)," +
-                "   author varchar(64)," +
-                "   type type_doc" +
-                ")",
+            "CREATE TYPE genre_cd AS ENUM ('ROCK','ORCHESTRAL','PODCAST','POP')",
+            "CREATE TABLE cds (" +
+            "   id INTEGER NOT NULL," +
+            "   document_id INTEGER NOT NULL," +
+            "   genre genre_cd NOT NULL," +
+            "   CONSTRAINT fk_document_id" +
+            "       FOREIGN KEY(document_id)" +
+            "           REFERENCES documents(id)," +
+            "   PRIMARY KEY(id, document_id)" +
+            ")",
         };
     }
 
     @Override
     public String[] down() {
         return new String[] {
-                "DROP TABLE documents;",
-                "DROP TYPE type_doc;"
+            "DROP TABLE documents;",
+            "DROP TYPE type_doc;"
         };
     }
 }
