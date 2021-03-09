@@ -10,7 +10,8 @@ import java.util.*;
 public interface Migration {
 
     public static Migration[] migrations = new Migration[] {
-            new MigrationAddDocuments()
+            new MigrationAddDocuments(),
+            new MigrationAddCD()
     };
 
     public static void main(String[] args) {

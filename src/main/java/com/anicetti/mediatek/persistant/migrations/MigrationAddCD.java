@@ -3,13 +3,13 @@ package com.anicetti.mediatek.persistant.migrations;
 public class MigrationAddCD implements Migration {
     @Override
     public String getName() {
-        return "Add Documents";
+        return "Add Cds";
     }
 
     @Override
     public String[] up() {
         return new String[] {
-            "CREATE TYPE genre_cd AS ENUM ('ROCK','ORCHESTRAL','PODCAST','POP')",
+            "CREATE TYPE genre_cd AS ENUM ('ROCK','ORCHESTRAL','PODCAST','POP');",
             "CREATE TABLE cds (" +
             "   id INTEGER NOT NULL," +
             "   document_id INTEGER NOT NULL," +
@@ -18,7 +18,7 @@ public class MigrationAddCD implements Migration {
             "       FOREIGN KEY(document_id)" +
             "           REFERENCES documents(id)," +
             "   PRIMARY KEY(id, document_id)" +
-            ")",
+            ");",
         };
     }
 
