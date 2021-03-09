@@ -1,18 +1,35 @@
 package com.anicetti.mediatek.services;
 
-import com.anicetti.mediatek.services.auth.TokenGenerator;
 import com.anicetti.mediatek.services.auth.TokenRuntimeRegistry;
 import mediatek2021.Mediatek;
 import mediatek2021.Utilisateur;
 
-import java.io.*;
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
-@WebServlet(name = "loginServlet", value = "/login")
-public class LoginServlet extends HttpServlet {
-    private String message;
+@WebServlet(name = "documentsServlet", value = "/documents")
+public class DocumentsServlet extends HttpServlet {
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        HttpSession session = request.getSession();
+        if(session != null) {
+            String token = (String) session.getAttribute("token");
+
+            response.setContentType("text/html");
+            if(token != null && TokenRuntimeRegistry.isValid(token)) {
+                request.getRequestDispatcher("/about.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("/login.jsp").forward(request, response);
+            }
+        }
+    }
+
+    /*private String message;
 
     public void init() {
         message = "Login";
@@ -21,7 +38,7 @@ public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
 
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/documents.jsp").forward(request, response);
     }
 
     @Override
@@ -34,14 +51,7 @@ public class LoginServlet extends HttpServlet {
 
         // REMOVE THIS ASAP
         if(login.equals("admin") && password.equals("admin")) {
-            String token = TokenGenerator.generateNewToken();
-            TokenRuntimeRegistry.addToken(token);
-
-            HttpSession session = req.getSession();
-            session.setAttribute("token", token);
-
-            resp.sendRedirect("/documents");
-
+            req.getRequestDispatcher("/documents.jsp").forward(req, resp);
         } else if(usr == null) {
             req.setAttribute("login_error", "Either login or password is wrong.");
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
@@ -49,5 +59,5 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void destroy() {
-    }
+    }*/
 }

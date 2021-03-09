@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%@ include file='./parts/styles.jsp' %>
+    <%@ include file='parts/styles.jsp' %>
     <title>Mediatek menu</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
                     <br/>
                     <div class="box">
                         <a class="button" href="login">login</a>
-                        <a class="button" href="./about.jsp">about</a>
+                        <a class="button" href="about.jsp">about</a>
                     </div>
                 </div>
             </div>
