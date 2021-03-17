@@ -1,6 +1,8 @@
 package com.anicetti.mediatek.persistant;
 
 import java.util.List;
+
+import com.anicetti.mediatek.persistant.documents.Cd;
 import mediatek2021.*;
 
 // classe mono-instance : l'unique instance est connue de la bibliotheque
@@ -40,9 +42,14 @@ public class MediatekData implements PersistentMediatek {
 	// ajoute un nouveau document - exception à définir
 	@Override
 	public void newDocument(int type, Object... args) throws NewDocException {
-		// args[0] -> le titre
-		// args[1] --> l'auteur
-		// etc en fonction du type et des infos optionnelles
+		switch (type){
+			case 1:
+				Cd cd = new Cd((String)args[0], (String)args[1], Cd.GenreCd.valueOf((String) args[2]));
+				cd.insert();
+				break;
+			default:
+				throw new NewDocException("Type invalide.");
+		}
 	}
 
 	// supprime un document - exception à définir

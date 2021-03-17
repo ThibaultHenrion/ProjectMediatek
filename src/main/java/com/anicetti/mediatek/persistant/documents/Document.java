@@ -12,9 +12,9 @@ public abstract class Document implements mediatek2021.Document {
     private final String SQL_DELETE = "DELETE FROM documents WHERE id = ?";
 
     public enum TypeDoc{
-        LIVRE,
         CD,
-        DVD
+        DVD,
+        LIVRE
     }
 
     private long primaryKey;
@@ -88,5 +88,5 @@ public abstract class Document implements mediatek2021.Document {
         }
     }
 
-    
+
 }
