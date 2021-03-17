@@ -32,5 +32,11 @@ public abstract class Document implements mediatek2021.Document {
         return typeDoc;
     }
 
-    public abstract void insert();
+    public void insert(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("INSERT INTO documents (name, author, type) VALUES ('");
+        sb.append(name).append("', '").append(name).append("', '").append(typeDoc).append("');");
+
+    }
 }

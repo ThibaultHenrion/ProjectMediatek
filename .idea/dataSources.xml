@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="javaee_dev@149.202.42.98" uuid="6de5edde-3365-428a-bcc6-792c6e108c7c">
+    <data-source source="LOCAL" name="postgres@ouiheberg" uuid="8cd1551d-6f40-4a3f-a9e6-fce41a63108c">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://149.202.42.98:5434/javaee_dev</jdbc-url>
+      <jdbc-url>jdbc:postgresql://185.248.33.23:5434/javaee_dev</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
