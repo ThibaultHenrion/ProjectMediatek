@@ -1,5 +1,7 @@
 package com.anicetti.mediatek.persistant.documents;
 
+import mediatek2021.NewDocException;
+
 public class Cd extends Document{
     public enum GenreCd{
         ROCK,
@@ -23,7 +25,7 @@ public class Cd extends Document{
     }
 
     @Override
-    public void insert() {
+    public void insert()throws NewDocException {
         super.insert();
     }
 }
