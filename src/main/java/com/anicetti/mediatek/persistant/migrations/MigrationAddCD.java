@@ -25,8 +25,8 @@ public class MigrationAddCD implements Migration {
     @Override
     public String[] down() {
         return new String[] {
-            "DROP TABLE documents;",
-            "DROP TYPE type_doc;"
+            "DROP TABLE cds;",
+            "DROP TYPE genre_cd;"
         };
     }
 }
