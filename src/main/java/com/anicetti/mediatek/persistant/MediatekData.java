@@ -43,7 +43,7 @@ public class MediatekData implements PersistentMediatek {
 	@Override
 	public void newDocument(int type, Object... args) throws NewDocException {
 		switch (type){
-			case 1:
+			case 0:
 				Cd cd = new Cd((String)args[0], (String)args[1], Cd.GenreCd.valueOf((String) args[2]));
 				cd.insert();
 				break;
