@@ -8,7 +8,7 @@ import java.sql.*;
 
 public abstract class Document implements mediatek2021.Document {
 
-    private final String SQL_INSERT = "INSERT INTO documents (name, author, type) VALUES(?,?,?)";
+    private final String SQL_INSERT = "INSERT INTO documents (id, name, author, type) VALUES(?,?,?,?::type_doc)";
 
     public enum TypeDoc{
         LIVRE,
@@ -48,9 +48,10 @@ public abstract class Document implements mediatek2021.Document {
             Connection con = ConnectionPool.getConnection();
             PreparedStatement statement = con.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
 
-            statement.setObject(1,this.name);
-            statement.setObject(2,this.author);
-            statement.setObject(3,this.typeDoc.name());
+            statement.setObject(1,0);
+            statement.setObject(2,this.name);
+            statement.setObject(3,this.author);
+            statement.setObject(4,this.typeDoc.name());
 
             int affectedRows = statement.executeUpdate();
 
