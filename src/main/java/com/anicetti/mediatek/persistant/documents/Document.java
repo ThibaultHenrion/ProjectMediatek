@@ -9,6 +9,7 @@ import java.sql.*;
 public abstract class Document implements mediatek2021.Document {
 
     private final String SQL_INSERT = "INSERT INTO documents (id, name, author, type) VALUES(?,?,?,?::type_doc)";
+    private final String SQL_DELETE = "DELETE FROM documents WHERE id = ?";
 
     public enum TypeDoc{
         LIVRE,
@@ -69,4 +70,23 @@ public abstract class Document implements mediatek2021.Document {
             throwables.printStackTrace();
         }
     }
+
+    public void delete() throws NewDocException{
+        try{
+            Connection con = ConnectionPool.getConnection();
+            PreparedStatement statement = con.prepareStatement(SQL_DELETE);
+
+            statement.setObject(1, primaryKey);
+
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows == 0){
+                throw new NewDocException("Echec de suppression du document, aucune ligne supprimée");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    
 }

@@ -16,7 +16,7 @@ public class MigrationAddCD implements Migration {
             "   genre genre_cd NOT NULL," +
             "   CONSTRAINT fk_document_id" +
             "       FOREIGN KEY(document_id)" +
-            "           REFERENCES documents(id)," +
+            "           REFERENCES documents(id) ON DELETE CASCADE," +
             "   PRIMARY KEY(id, document_id)" +
             ");",
         };
