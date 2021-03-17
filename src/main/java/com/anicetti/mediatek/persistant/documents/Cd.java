@@ -23,8 +23,7 @@ public class Cd extends Document{
     }
 
     @Override
-    public String insert() {
+    public void insert() {
         super.insert();
-
     }
 }

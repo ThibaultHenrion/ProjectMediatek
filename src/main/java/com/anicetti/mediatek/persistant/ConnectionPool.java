@@ -10,10 +10,10 @@ public class ConnectionPool {
 
     private static final int SIZE = 10;
     private static ConnectionPool instance;
-    private static final String DB_URL = "jdbc:postgresql://149.202.42.98:5434/";
+    private static final String DB_URL = "jdbc:postgresql://185.248.33.23:5434/";
     private static final String DB_NAME = "javaee_dev";
     private static final String DB_USER = "postgres";
-    private static final String DB_PASSWORD = "postgres";
+    private static final String DB_PASSWORD = "brette";
 
     private int shift = 0;
     private List<Connection> connections;
