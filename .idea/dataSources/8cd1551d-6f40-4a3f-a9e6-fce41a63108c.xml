@@ -989,11 +989,13 @@ POP</Labels>
     </object-type>
     <table id="32" parent="17" name="cds">
       <ObjectId>16567</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>551</StateNumber>
     </table>
     <table id="33" parent="17" name="documents">
       <ObjectId>16553</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
       <StateNumber>551</StateNumber>
     </table>

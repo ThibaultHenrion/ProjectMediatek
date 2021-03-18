@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="mediatek2021.Document" %><%--
   Created by IntelliJ IDEA.
   User: mr003
   Date: 09/03/2021
@@ -6,8 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% Object[][] liste_cd = (Object[][]) request.getAttribute("liste_cd"); %>
-<% Object[][] liste_dvd = (Object[][]) request.getAttribute("liste_dvd"); %>
+<% List<Document> liste_cd = (List<Document>) request.getAttribute("liste_cd"); %>
+<% List<Document> liste_dvd = (List<Document>) request.getAttribute("liste_dvd"); %>
 <% int ID = 0; %>
 <% int TYPE = 1; %>
 <% int NOM = 2; %>
@@ -27,10 +28,10 @@
                 <div class='column is-half is-full-mobile'>
                     <h1 class="title"><%= "Mediatek documents" %></h1>
                     <br/>
-                    <% if(liste_cd.length > 0) { %>
-                        <h1 class="title is-2">Tous les CD</h1>
+                    <% if(liste_cd.size() > 0) { %>
+                        <h1 class="title is-4">Tous les CD</h1>
                     <% } else { %>
-                        <h1 class="title is-2">Aucun CD :(</h1>
+                        <h1 class="title is-4">Aucun CD :(</h1>
                     <% } %>
                     <form id="add-form" action="${pageContext.request.contextPath}/ajouter_cd" method="GET">
                         <div class="field is-grouped">
@@ -39,25 +40,25 @@
                             </div>
                         </div>
                     </form>
-                    <% for(Object[] cd:liste_cd) { %>
+                    <% for(Document cd:liste_cd) { %>
                         <div class="box">
-                            <h2 class="title is-2"><%= cd[NOM] %></h2>
-                            <p>Compositeur : <%= cd[AUTEUR] %></p>
-                            <p>Genre : <%= cd[GENRE_CD] %></p>
+                            <h2 class="title is-2"><%= cd.data()[NOM] %></h2>
+                            <p>Compositeur : <%= cd.data()[AUTEUR] %></p>
+                            <p>Genre : <%= cd.data()[GENRE_CD] %></p>
                             <br/>
                             <form
-                                    id="delete-<%=cd[ID]%>"
-                                    action="${pageContext.request.contextPath}/documents?id=<%=cd[ID]%>&action=delete"
+                                    id="delete-<%=cd.data()[ID]%>"
+                                    action="${pageContext.request.contextPath}/documents?id=<%=cd.data()[ID]%>&action=delete"
                                     method="POST"
                             >
-                                <button type="submit" form="delete-<%=cd[ID]%>" class="button is-danger">Supprimer</button>
+                                <button type="submit" form="delete-<%=cd.data()[ID]%>" class="button is-danger">Supprimer</button>
                             </form>
                         </div>
                     <% } %>
-                    <% if(liste_dvd.length > 0) { %>
-                        <h1 class="title is-2">Tous les DVD</h1>
+                    <% if(liste_dvd.size() > 0) { %>
+                        <h1 class="title is-4">Tous les DVD</h1>
                     <% } else { %>
-                        <h1 class="title is-2">Aucun DVD :(</h1>
+                        <h1 class="title is-4">Aucun DVD :(</h1>
                     <% } %>
                     <form id="add-form" action="${pageContext.request.contextPath}/ajouter_dvd" method="GET">
                         <div class="field is-grouped">
@@ -66,18 +67,18 @@
                             </div>
                         </div>
                     </form>
-                    <% for(Object[] dvd:liste_dvd) { %>
+                    <% for(Document dvd:liste_dvd) { %>
                     <div class="box">
-                        <h2 class="title is-2"><%= dvd[NOM] %></h2>
-                        <p>Compositeur : <%= dvd[AUTEUR] %></p>
-                        <p>Genre : <%= dvd[GENRE_DVD] %></p>
+                        <h2 class="title is-2"><%= dvd.data()[NOM] %></h2>
+                        <p>Compositeur : <%= dvd.data()[AUTEUR] %></p>
+                        <p>Genre : <%= dvd.data()[GENRE_DVD] %></p>
                         <br/>
                         <form
-                                id="delete-<%=dvd[ID]%>"
-                                action="${pageContext.request.contextPath}/documents?id=<%=dvd[ID]%>&action=delete"
+                                id="delete-<%=dvd.data()[ID]%>"
+                                action="${pageContext.request.contextPath}/documents?id=<%=dvd.data()[ID]%>&action=delete"
                                 method="POST"
                         >
-                            <button type="submit" form="delete-<%=dvd[ID]%>" class="button is-danger">Supprimer</button>
+                            <button type="submit" form="delete-<%=dvd.data()[ID]%>" class="button is-danger">Supprimer</button>
                         </form>
                     </div>
                     <% } %>

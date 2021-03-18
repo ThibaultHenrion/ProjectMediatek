@@ -11,7 +11,7 @@ public class MigrationAddDocuments implements Migration {
         return new String[] {
             "CREATE TYPE type_doc AS ENUM ('LIVRE','CD','DVD');",
             "CREATE TABLE documents (" +
-            "   id INTEGER PRIMARY KEY," +
+            "   id SERIAL PRIMARY KEY," +
             "   name varchar(64) NOT NULL," +
             "   author varchar(64) NOT NULL," +
             "   type type_doc NOT NULL" +
