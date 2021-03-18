@@ -790,7 +790,7 @@ true posixrules
     <database id="2" parent="1" name="javaee_dev">
       <ObjectId>16384</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>553</IntrospectionStateNumber>
+      <IntrospectionStateNumber>509</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <database id="3" parent="1" name="postgres">
@@ -866,7 +866,7 @@ UC/10
 </Acl>
       <StateNumber>287</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>554</IntrospectionStateNumber>
+      <IntrospectionStateNumber>510</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <extension id="18" parent="2" name="plpgsql">
@@ -967,9 +967,9 @@ UC/10
       <Type>index</Type>
     </access-method>
     <object-type id="30" parent="17" name="type_doc">
-      <ObjectId>16546</ObjectId>
+      <ObjectId>16418</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>548</StateNumber>
+      <StateNumber>505</StateNumber>
       <SubKind>enum</SubKind>
       <Labels>LIVRE
 CD
@@ -977,9 +977,9 @@ DVD</Labels>
       <SubCategory>enum</SubCategory>
     </object-type>
     <object-type id="31" parent="17" name="genre_cd">
-      <ObjectId>16559</ObjectId>
+      <ObjectId>16431</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>550</StateNumber>
+      <StateNumber>507</StateNumber>
       <SubKind>enum</SubKind>
       <Labels>ROCK
 ORCHESTRAL
@@ -988,39 +988,41 @@ POP</Labels>
       <SubCategory>enum</SubCategory>
     </object-type>
     <table id="32" parent="17" name="cds">
-      <ObjectId>16567</ObjectId>
+      <ObjectId>16439</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
-      <StateNumber>551</StateNumber>
+      <StateNumber>508</StateNumber>
     </table>
     <table id="33" parent="17" name="documents">
-      <ObjectId>16553</ObjectId>
+      <ObjectId>16425</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>postgres</Owner>
-      <StateNumber>551</StateNumber>
+      <StateNumber>508</StateNumber>
     </table>
     <column id="34" parent="32" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>551</StateNumber>
+      <StateNumber>508</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="35" parent="32" name="document_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>551</StateNumber>
+      <StateNumber>508</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="36" parent="32" name="genre">
       <Position>3</Position>
       <DataType>genre_cd|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>551</StateNumber>
-      <TypeId>16559</TypeId>
+      <StateNumber>508</StateNumber>
+      <TypeId>16431</TypeId>
     </column>
     <index id="37" parent="32" name="cds_pkey">
-      <ObjectId>16570</ObjectId>
-      <StateNumber>551</StateNumber>
+      <ObjectId>16442</ObjectId>
+      <StateNumber>508</StateNumber>
       <ColNames>id
 document_id</ColNames>
       <Unique>1</Unique>
@@ -1030,55 +1032,54 @@ document_id</ColNames>
       <ClassIds>1978,1978</ClassIds>
     </index>
     <key id="38" parent="32" name="cds_pkey">
-      <ObjectId>16571</ObjectId>
-      <StateNumber>551</StateNumber>
+      <ObjectId>16443</ObjectId>
+      <StateNumber>508</StateNumber>
       <ColNames>id
 document_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>cds_pkey</UnderlyingIndexName>
     </key>
     <foreign-key id="39" parent="32" name="fk_document_id">
-      <ObjectId>16572</ObjectId>
-      <StateNumber>551</StateNumber>
+      <ObjectId>16444</ObjectId>
+      <StateNumber>508</StateNumber>
       <ColNames>document_id</ColNames>
-      <RefTableId>16553</RefTableId>
+      <RefTableId>16425</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>documents</RefTableName>
       <RefKeyName>documents_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="40" parent="33" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>549</StateNumber>
+      <StateNumber>506</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="41" parent="33" name="name">
       <Position>2</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>549</StateNumber>
+      <StateNumber>506</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="42" parent="33" name="author">
       <Position>3</Position>
       <DataType>varchar(64)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>549</StateNumber>
+      <StateNumber>506</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="43" parent="33" name="type">
       <Position>4</Position>
       <DataType>type_doc|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>549</StateNumber>
-      <TypeId>16546</TypeId>
+      <StateNumber>506</StateNumber>
+      <TypeId>16418</TypeId>
     </column>
     <index id="44" parent="33" name="documents_pkey">
-      <ObjectId>16556</ObjectId>
-      <StateNumber>549</StateNumber>
+      <ObjectId>16428</ObjectId>
+      <StateNumber>506</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -1087,8 +1088,8 @@ document_id</ColNames>
       <ClassIds>1978</ClassIds>
     </index>
     <key id="45" parent="33" name="documents_pkey">
-      <ObjectId>16557</ObjectId>
-      <StateNumber>549</StateNumber>
+      <ObjectId>16429</ObjectId>
+      <StateNumber>506</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>documents_pkey</UnderlyingIndexName>
