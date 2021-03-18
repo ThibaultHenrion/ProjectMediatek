@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionPool {
-
     private static final int SIZE = 10;
     private static ConnectionPool instance;
     private static final String DB_URL = "jdbc:postgresql://185.248.33.23:5434/";
@@ -20,6 +19,11 @@ public class ConnectionPool {
 
     private ConnectionPool() throws SQLException {
         connections = new ArrayList<>();
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         for(int i = 0; i < SIZE; i++) {
             connections.add(DriverManager.getConnection(DB_URL+DB_NAME, DB_USER, DB_PASSWORD));
         }

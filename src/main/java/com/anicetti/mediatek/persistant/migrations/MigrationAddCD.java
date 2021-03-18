@@ -11,8 +11,8 @@ public class MigrationAddCD implements Migration {
         return new String[] {
             "CREATE TYPE genre_cd AS ENUM ('ROCK','ORCHESTRAL','PODCAST','POP');",
             "CREATE TABLE cds (" +
-            "   id INTEGER NOT NULL," +
-            "   document_id INTEGER NOT NULL," +
+            "   id SERIAL NOT NULL," +
+            "   document_id SERIAL NOT NULL," +
             "   genre genre_cd NOT NULL," +
             "   CONSTRAINT fk_document_id" +
             "       FOREIGN KEY(document_id)" +

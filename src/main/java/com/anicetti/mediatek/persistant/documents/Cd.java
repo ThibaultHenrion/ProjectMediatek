@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Cd extends Document{
 
-    private final String SQL_INSERT = "INSERT INTO cds (id, document_id, genre) VALUES (?,?,?::genre_cd)";
+    private final String SQL_INSERT = "INSERT INTO cds (document_id, genre) VALUES (?,?::genre_cd)";
 
     public enum GenreCd{
         ROCK,
@@ -23,11 +23,12 @@ public class Cd extends Document{
 
     @Override
     public Object[] data() {
-        Object[] obj = new Object[4];
-        obj[0] = getName();
-        obj[1] = getAuthor();
-        obj[2] = getTypeDoc().name();
-        obj[3] = genreCd.name();
+        Object[] obj = new Object[5];
+        obj[0] = getPrimaryKey();
+        obj[1] = getTypeDoc().name();
+        obj[2] = getName();
+        obj[3] = getAuthor();
+        obj[4] = genreCd.name();
         return obj;
     }
 
@@ -54,7 +55,7 @@ public class Cd extends Document{
         ArrayList<Cd> all = new ArrayList<>();
         Connection con = ConnectionPool.getConnection();
 
-        String queryDocuments = "SELECT * FROM cds";
+        String queryDocuments = "SELECT * FROM cds LEFT JOIN documents d on cds.document_id = d.id";
         try {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(queryDocuments);
@@ -79,14 +80,12 @@ public class Cd extends Document{
             throw new NewDocException(e.getMessage());
         }
 
-
         try{
             Connection con = ConnectionPool.getConnection();
             PreparedStatement statement = con.prepareStatement(SQL_INSERT);
 
-            statement.setObject(1,0);
-            statement.setObject(2, getPrimaryKey());
-            statement.setObject(3,genreCd.name());
+            statement.setObject(1, getPrimaryKey());
+            statement.setObject(2,genreCd.name());
 
             int affectedRows = statement.executeUpdate();
 
@@ -95,6 +94,7 @@ public class Cd extends Document{
             }
         }catch (SQLException throwables){
             throwables.printStackTrace();
+            throw new NewDocException("Echec creation cd.");
         }
     }
 }

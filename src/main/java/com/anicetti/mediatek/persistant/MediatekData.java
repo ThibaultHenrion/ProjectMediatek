@@ -27,7 +27,7 @@ public class MediatekData implements PersistentMediatek {
 	@Override
 	public List<Document> catalogue(int type) {
 		List<Cd> res = Cd.getAll();
-		return new ArrayList<Document>();
+		return new ArrayList<>(res);
 	}
 
 	// va récupérer le User dans la BD et le renvoie
