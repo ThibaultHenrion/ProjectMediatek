@@ -44,7 +44,7 @@ public class Cd extends Document{
 
     private GenreCd getGenreByName(String name) {
         for(GenreCd genre:GenreCd.values()) {
-            if(genre.name().equals(name)) {
+            if(genre.name().equalsIgnoreCase(name)) {
                 return genre;
             }
         }
