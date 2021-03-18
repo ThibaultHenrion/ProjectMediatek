@@ -10,7 +10,7 @@ import java.util.List;
 public class Dvd extends Document{
 
 
-    private static final String SQL_INSERT = "INSERT INTO dvds (document_id, genre, for_adults) VALUES (?, ?::genre_dvd, ?)";
+    private final String SQL_INSERT = "INSERT INTO dvds (document_id, for_adults, genre) VALUES (?, ?, ?::genre_dvd)";
 
     public enum GenreDvd{
         HORROR,
@@ -90,11 +90,14 @@ public class Dvd extends Document{
             PreparedStatement statement = con.prepareStatement(SQL_INSERT);
 
             statement.setObject(1, getPrimaryKey());
+            statement.setObject(3, pourAdulte, Types.BOOLEAN);
             statement.setObject(2, genreDvd.name());
-            statement.setObject(3, pourAdulte);
 
             int affectedRows = statement.executeUpdate();
 
+            if (affectedRows == 0){
+                throw new NewDocException("Echec création dvd, aucune ligne créée");
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             throw new NewDocException("Echec creation dvd");

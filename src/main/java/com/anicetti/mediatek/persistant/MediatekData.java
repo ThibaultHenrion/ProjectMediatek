@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.anicetti.mediatek.persistant.auth.User;
 import com.anicetti.mediatek.persistant.documents.Cd;
+import com.anicetti.mediatek.persistant.documents.Dvd;
 import mediatek2021.*;
 
 // classe mono-instance : l'unique instance est connue de la bibliotheque
@@ -51,8 +52,14 @@ public class MediatekData implements PersistentMediatek {
 	public void newDocument(int type, Object... args) throws NewDocException {
 		switch (type){
 			case 0:
-				Cd cd = new Cd((String)args[0], (String)args[1], Cd.GenreCd.valueOf((String) args[2]));
+				Cd cd = new Cd((String)args[0], (String)args[1],
+						Cd.GenreCd.valueOf((String) args[2]));
 				cd.insert();
+				break;
+			case 1:
+				Dvd dvd = new Dvd((String)args[0], (String)args[1],
+						Dvd.GenreDvd.valueOf((String) args[2]), (boolean) args[3]);
+				dvd.insert();
 				break;
 			default:
 				throw new NewDocException("Type invalide.");
