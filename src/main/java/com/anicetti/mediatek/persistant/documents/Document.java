@@ -5,6 +5,7 @@ import com.anicetti.mediatek.persistant.ConnectionPool;
 import mediatek2021.NewDocException;
 
 import java.sql.*;
+import java.util.List;
 
 public abstract class Document implements mediatek2021.Document {
 

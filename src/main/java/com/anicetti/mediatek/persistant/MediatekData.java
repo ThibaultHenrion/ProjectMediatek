@@ -1,5 +1,10 @@
 package com.anicetti.mediatek.persistant;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.anicetti.mediatek.persistant.documents.Cd;
@@ -21,7 +26,8 @@ public class MediatekData implements PersistentMediatek {
 	// renvoie la liste de tous les documents de la bibliothèque
 	@Override
 	public List<Document> catalogue(int type) {
-		return null;
+		List<Cd> res = Cd.getAll();
+		return new ArrayList<Document>();
 	}
 
 	// va récupérer le User dans la BD et le renvoie

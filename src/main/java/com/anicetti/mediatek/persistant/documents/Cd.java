@@ -3,10 +3,9 @@ package com.anicetti.mediatek.persistant.documents;
 import com.anicetti.mediatek.persistant.ConnectionPool;
 import mediatek2021.NewDocException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cd extends Document{
 
@@ -32,9 +31,44 @@ public class Cd extends Document{
         return obj;
     }
 
+    public Cd(String name, String author, String genreCd) {
+        super(name, author, TypeDoc.CD);
+        this.genreCd = getGenreByName(genreCd);
+    }
+
     public Cd(String name, String author, GenreCd genreCd) {
         super(name, author, TypeDoc.CD);
         this.genreCd = genreCd;
+    }
+
+    private GenreCd getGenreByName(String name) {
+        for(GenreCd genre:GenreCd.values()) {
+            if(genre.name().equals(name)) {
+                return genre;
+            }
+        }
+        return null;
+    }
+
+    public static List<Cd> getAll() {
+        ArrayList<Cd> all = new ArrayList<>();
+        Connection con = ConnectionPool.getConnection();
+
+        String queryDocuments = "SELECT * FROM cds";
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(queryDocuments);
+            while(rs.next()) {
+                all.add(new Cd(
+                        rs.getString("name"),
+                        rs.getString("author"),
+                        rs.getString("genre")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return all;
     }
 
     @Override
