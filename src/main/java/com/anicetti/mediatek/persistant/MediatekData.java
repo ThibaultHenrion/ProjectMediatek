@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.anicetti.mediatek.persistant.auth.User;
 import com.anicetti.mediatek.persistant.documents.Cd;
 import mediatek2021.*;
 
@@ -34,7 +35,7 @@ public class MediatekData implements PersistentMediatek {
 	// si pas trouvé, renvoie null
 	@Override
 	public Utilisateur getUser(String login, String password) {
-		return null;
+		return User.getOne(login, password);
 	}
 
 	// va récupérer le document de numéro numDocument dans la BD

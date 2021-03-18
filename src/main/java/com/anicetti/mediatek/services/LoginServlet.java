@@ -27,8 +27,7 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         Utilisateur usr = md.getUser(login, password);
 
-        // REMOVE THIS ASAP
-        if(login.equals("admin") && password.equals("admin")) {
+        if(usr != null) {
             String token = TokenGenerator.generateNewToken();
             TokenRuntimeRegistry.addToken(token);
 
@@ -37,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 
             resp.sendRedirect("/documents");
 
-        } else if(usr == null) {
+        } else {
             req.setAttribute("login_error", "Either login or password is wrong.");
             req.getRequestDispatcher("/login.jsp").forward(req, resp);
         }

@@ -36,7 +36,7 @@
                     <form id="add-form" action="${pageContext.request.contextPath}/ajouter_cd" method="GET">
                         <div class="field is-grouped">
                             <div class="control">
-                                <button type="submit" form="add-form" class="button is-link">Ajouter CD</button>
+                                <button type="submit" form="add-form" class="button is-primary">Ajouter CD</button>
                             </div>
                         </div>
                     </form>
@@ -63,7 +63,7 @@
                     <form id="add-form" action="${pageContext.request.contextPath}/ajouter_dvd" method="GET">
                         <div class="field is-grouped">
                             <div class="control">
-                                <button type="submit" form="add-form" class="button is-link">Ajouter DVD</button>
+                                <button type="submit" form="add-form" class="button is-primary">Ajouter DVD</button>
                             </div>
                         </div>
                     </form>
