@@ -34,11 +34,12 @@ public interface Migration {
                 for(String q:m.down()) {
                     try (Statement stmt = con.createStatement()) {
                         stmt.executeUpdate(q);
+                        System.out.println("Down success!");
                     } catch (SQLException e) {
+                        System.out.println("Down error vvvvvvvvvvvvvvvvvvvvvv");
                         e.printStackTrace();
                     }
                 }
-                System.out.println("Down success!");
             }
         }
 
@@ -50,11 +51,12 @@ public interface Migration {
                 for(String q:m.up()) {
                     try (Statement stmt = con.createStatement()) {
                         stmt.executeUpdate(q);
+                        System.out.println("Up success!");
                     } catch (SQLException e) {
+                        System.out.println("Up error vvvvvvvvvvvvvvvvvvvvvv");
                         e.printStackTrace();
                     }
                 }
-                System.out.println("Up success!");
             }
         }
     }
