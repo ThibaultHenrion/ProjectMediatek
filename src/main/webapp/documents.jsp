@@ -1,11 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="mediatek2021.Document" %><%--
-  Created by IntelliJ IDEA.
-  User: mr003
-  Date: 09/03/2021
-  Time: 14:16
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="mediatek2021.Document" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% List<Document> liste_cd = (List<Document>) request.getAttribute("liste_cd"); %>
 <% List<Document> liste_dvd = (List<Document>) request.getAttribute("liste_dvd"); %>

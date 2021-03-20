@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: mr003
-  Date: 26/02/2021
-  Time: 09:35
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% String login_error = (String) request.getAttribute("login_error"); %>
 <html>
@@ -37,14 +30,12 @@
                                 <div class="control">
                                     <input name="login" class="input" type="text" placeholder="Tibo18"/>
                                 </div>
-                                <!--<p class="help is-success">This username is available</p>-->
                             </div>
                             <div class="field">
                                 <label class="label">Password</label>
                                 <div class="control">
                                     <input name="password" class="input" type="password" placeholder="************"/>
                                 </div>
-                                <!--<p class="help is-success">This username is available</p>-->
                             </div>
                         </form>
                         <div class="field is-grouped">

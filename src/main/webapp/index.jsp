@@ -15,7 +15,7 @@
                     <br/>
                     <div class="box">
                         <a class="button" href="login">login</a>
-                        <a class="button" href="about.jsp">about</a>
+                        <!--<a class="button" href="about.jsp">about</a>-->
                     </div>
                 </div>
             </div>

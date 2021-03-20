@@ -1,10 +1,8 @@
-package com.anicetti.mediatek.services;
+package com.anicetti.mediatek.services.documents;
 
-import com.anicetti.mediatek.services.auth.TokenGenerator;
 import com.anicetti.mediatek.services.auth.TokenRuntimeRegistry;
 import mediatek2021.Mediatek;
 import mediatek2021.NewDocException;
-import mediatek2021.Utilisateur;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
