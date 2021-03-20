@@ -2,6 +2,8 @@ package com.anicetti.mediatek.services;
 
 import com.anicetti.mediatek.services.auth.TokenRuntimeRegistry;
 import mediatek2021.Mediatek;
+import mediatek2021.NewDocException;
+import mediatek2021.SuppressException;
 import mediatek2021.Utilisateur;
 
 import javax.servlet.ServletException;
@@ -28,8 +30,38 @@ public class DocumentsServlet extends HttpServlet {
                 request.setAttribute("liste_dvd", md.catalogue(1));
                 request.getRequestDispatcher("/documents.jsp").forward(request, response);
             } else {
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                response.sendRedirect("/login");
             }
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        response.setContentType("text/html");
+
+        if(session != null) {
+            String token = (String) session.getAttribute("token");
+
+            if(token != null && TokenRuntimeRegistry.isValid(token)) {
+                Mediatek md = Mediatek.getInstance();
+
+                if(request.getParameter("action").equals("delete")) {
+                    String id = request.getParameter("id");
+                    try {
+                        md.suppressDoc(Integer.parseInt(id));
+                    } catch (SuppressException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                response.sendRedirect("/documents");
+
+            } else {
+                response.sendRedirect("/login");
+            }
+        } else {
+            response.sendRedirect("/login");
         }
     }
 

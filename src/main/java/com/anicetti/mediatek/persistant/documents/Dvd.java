@@ -7,10 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Dvd extends Document{
+public class Dvd extends DocumentPersistant {
 
-
-    private final String SQL_INSERT = "INSERT INTO dvds (document_id, for_adults, genre) VALUES (?, ?, ?::genre_dvd)";
+    private static final String SQL_INSERT = "INSERT INTO dvds (document_id, for_adults, genre) VALUES (?, ?, ?::genre_dvd)";
 
     public enum GenreDvd{
         HORROR,
@@ -64,12 +63,14 @@ public class Dvd extends Document{
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery(queryDocument);
             while (resultSet.next()){
-                all.add(new Dvd(
+                Dvd d = new Dvd(
                         resultSet.getString("name"),
                         resultSet.getString("author"),
                         resultSet.getString("genre"),
                         resultSet.getBoolean("for_adults")
-                ));
+                );
+                d.setPrimaryKey(resultSet.getInt("document_id"));
+                all.add(d);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -90,8 +91,8 @@ public class Dvd extends Document{
             PreparedStatement statement = con.prepareStatement(SQL_INSERT);
 
             statement.setObject(1, getPrimaryKey());
-            statement.setObject(3, pourAdulte, Types.BOOLEAN);
-            statement.setObject(2, genreDvd.name());
+            statement.setObject(2, pourAdulte, Types.BOOLEAN);
+            statement.setObject(3, genreDvd.name());
 
             int affectedRows = statement.executeUpdate();
 

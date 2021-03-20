@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.anicetti.mediatek.persistant.auth.User;
 import com.anicetti.mediatek.persistant.documents.Cd;
+import com.anicetti.mediatek.persistant.documents.DocumentPersistant;
 import com.anicetti.mediatek.persistant.documents.Dvd;
 import mediatek2021.*;
 
@@ -28,8 +29,12 @@ public class MediatekData implements PersistentMediatek {
 	// renvoie la liste de tous les documents de la bibliothèque
 	@Override
 	public List<Document> catalogue(int type) {
-		List<Cd> res = Cd.getAll();
-		return new ArrayList<>(res);
+		if(type == 0) {
+			return new ArrayList<>(Cd.getAll());
+		} else if(type == 1) {
+			return new ArrayList<>(Dvd.getAll());
+		}
+		return new ArrayList<>();
 	}
 
 	// va récupérer le User dans la BD et le renvoie
@@ -57,7 +62,7 @@ public class MediatekData implements PersistentMediatek {
 				cd.insert();
 				break;
 			case 1:
-				Dvd dvd = new Dvd((String)args[0], (String)args[1],
+				Dvd dvd = new Dvd((String)args[0], (String) args[1],
 						Dvd.GenreDvd.valueOf((String) args[2]), (boolean) args[3]);
 				dvd.insert();
 				break;
@@ -69,7 +74,8 @@ public class MediatekData implements PersistentMediatek {
 	// supprime un document - exception à définir
 	@Override
 	public void suppressDoc(int numDoc) throws SuppressException {
-		
+		System.out.println(numDoc);
+		DocumentPersistant.delete(numDoc);
 	}
 
 }

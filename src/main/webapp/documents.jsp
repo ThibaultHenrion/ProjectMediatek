@@ -15,6 +15,7 @@
 <% int AUTEUR = 3; %>
 <% int GENRE_CD = 4; %>
 <% int GENRE_DVD = 4; %>
+<% int EST_POUR_ADULTE_DVD = 5; %>
 <html>
 <head>
     <%@ include file='parts/styles.jsp' %>
@@ -33,10 +34,10 @@
                     <% } else { %>
                         <h1 class="title is-4">Aucun CD :(</h1>
                     <% } %>
-                    <form id="add-form" action="${pageContext.request.contextPath}/ajouter_cd" method="GET">
+                    <form id="add-form-cd" action="${pageContext.request.contextPath}/ajouter_cd" method="GET">
                         <div class="field is-grouped">
                             <div class="control">
-                                <button type="submit" form="add-form" class="button is-primary">Ajouter CD</button>
+                                <button type="submit" form="add-form-cd" class="button is-primary">Ajouter CD</button>
                             </div>
                         </div>
                     </form>
@@ -60,18 +61,19 @@
                     <% } else { %>
                         <h1 class="title is-4">Aucun DVD :(</h1>
                     <% } %>
-                    <form id="add-form" action="${pageContext.request.contextPath}/ajouter_dvd" method="GET">
+                    <form id="add-form-dvd" action="${pageContext.request.contextPath}/ajouter_dvd" method="GET">
                         <div class="field is-grouped">
                             <div class="control">
-                                <button type="submit" form="add-form" class="button is-primary">Ajouter DVD</button>
+                                <button type="submit" form="add-form-dvd" class="button is-primary">Ajouter DVD</button>
                             </div>
                         </div>
                     </form>
                     <% for(Document dvd:liste_dvd) { %>
                     <div class="box">
                         <h2 class="title is-2"><%= dvd.data()[NOM] %></h2>
-                        <p>Compositeur : <%= dvd.data()[AUTEUR] %></p>
+                        <p>Réalisateur : <%= dvd.data()[AUTEUR] %></p>
                         <p>Genre : <%= dvd.data()[GENRE_DVD] %></p>
+                        <p>Est pour adulte ? : <%= dvd.data()[EST_POUR_ADULTE_DVD].toString() %></p>
                         <br/>
                         <form
                                 id="delete-<%=dvd.data()[ID]%>"

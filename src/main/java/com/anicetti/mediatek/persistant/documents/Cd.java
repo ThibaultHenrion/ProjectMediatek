@@ -7,9 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cd extends Document{
+public class Cd extends DocumentPersistant {
 
-    private final String SQL_INSERT = "INSERT INTO cds (document_id, genre) VALUES (?,?::genre_cd)";
+    private static final String SQL_INSERT = "INSERT INTO cds (document_id, genre) VALUES (?,?::genre_cd)";
 
     public enum GenreCd{
         ROCK,
@@ -60,11 +60,13 @@ public class Cd extends Document{
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(queryDocuments);
             while(rs.next()) {
-                all.add(new Cd(
+                Cd c = new Cd(
                         rs.getString("name"),
                         rs.getString("author"),
                         rs.getString("genre")
-                ));
+                );
+                c.setPrimaryKey(rs.getInt("document_id"));
+                all.add(c);
             }
         } catch (SQLException e) {
             e.printStackTrace();

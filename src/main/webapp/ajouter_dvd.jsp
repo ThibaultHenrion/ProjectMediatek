@@ -18,7 +18,7 @@
         <div class='row is-full'>
             <div class='columns is-centered'>
                 <div class='column is-half is-full-mobile'>
-                    <h1 class="title"><%= "Mediatek ajouter CD" %></h1>
+                    <h1 class="title"><%= "Mediatek ajouter DVD" %></h1>
                     <br/>
                     <div class="box">
                         <% if(erreur_ajout != null) {%>
@@ -31,7 +31,7 @@
                                 </div>
                             </article>
                         <% } %>
-                        <form id="ajout-form" action="${pageContext.request.contextPath}/ajouter_cd" method="POST">
+                        <form id="ajout-form" action="${pageContext.request.contextPath}/ajouter_dvd" method="POST">
                             <div class="field">
                                 <label class="label">Nom</label>
                                 <div class="control">
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="field">
-                                <label class="label">Musicien</label>
+                                <label class="label">Réalisateur</label>
                                 <div class="control">
                                     <input name="auteur" class="input" type="text" placeholder=""/>
                                 </div>
@@ -48,11 +48,17 @@
                                 <label class="label">Genre</label>
                                 <div class="control">
                                     <select name="genre" class="select">
-                                        <option value="ROCK">Rock</option>
-                                        <option value="ORCHESTRAL">Orchestral</option>
-                                        <option value="PODCAST">Podcast</option>
-                                        <option value="POP">Pop</option>
+                                        <option value="HORROR">Horror</option>
+                                        <option value="ROMANTIC">Romantic</option>
+                                        <option value="COMEDY">Comedy</option>
+                                        <option value="SCIENCE_FICTION">Science-fiction</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Est pour adulte ?</label>
+                                <div class="control">
+                                    <input type="checkbox" class="checkbox" name="est_adulte" value="true">
                                 </div>
                             </div>
                         </form>

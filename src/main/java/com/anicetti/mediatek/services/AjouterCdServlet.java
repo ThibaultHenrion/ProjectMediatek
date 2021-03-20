@@ -26,10 +26,10 @@ public class AjouterCdServlet extends HttpServlet {
             if(token != null && TokenRuntimeRegistry.isValid(token)) {
                 request.getRequestDispatcher("/ajouter_cd.jsp").forward(request, response);
             } else {
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                response.sendRedirect("/login");
             }
         } else {
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            response.sendRedirect("/login");
         }
     }
 
@@ -56,10 +56,10 @@ public class AjouterCdServlet extends HttpServlet {
                     request.getRequestDispatcher("/ajouter_cd.jsp").forward(request, response);
                 }
             } else {
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                response.sendRedirect("/login");
             }
         } else {
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            response.sendRedirect("/login");
         }
     }
 

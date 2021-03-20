@@ -1,5 +1,9 @@
 package com.anicetti.mediatek.services;
 
+import com.anicetti.mediatek.services.auth.TokenRuntimeRegistry;
+import mediatek2021.Mediatek;
+import mediatek2021.NewDocException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,42 +17,50 @@ public class AjouterDvdServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
+        response.setContentType("text/html");
         if(session != null) {
             String token = (String) session.getAttribute("token");
 
-            
+            if(token != null && TokenRuntimeRegistry.isValid(token)) {
+                request.getRequestDispatcher("/ajouter_dvd.jsp").forward(request, response);
+            } else {
+                response.sendRedirect("/login");
+            }
+        } else {
+            response.sendRedirect("/login");
         }
-    }
-
-    /*private String message;
-
-    public void init() {
-        message = "Login";
-    }
-
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html");
-
-        request.getRequestDispatcher("/documents.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("adohizaazpihdpihadzapidhazpdihzad");
-        Mediatek md = Mediatek.getInstance();
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        Utilisateur usr = md.getUser(login, password);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        response.setContentType("text/html");
 
-        // REMOVE THIS ASAP
-        if(login.equals("admin") && password.equals("admin")) {
-            req.getRequestDispatcher("/documents.jsp").forward(req, resp);
-        } else if(usr == null) {
-            req.setAttribute("login_error", "Either login or password is wrong.");
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+        if(session != null) {
+            String token = (String) session.getAttribute("token");
+
+            if(token != null && TokenRuntimeRegistry.isValid(token)) {
+                Mediatek md = Mediatek.getInstance();
+                String nom = request.getParameter("nom");
+                String auteur = request.getParameter("auteur");
+                String genre = request.getParameter("genre");
+                boolean estAdulte = request.getParameter("est_adulte") != null;
+                int type = 1;
+
+                try {
+                    md.newDocument(type, nom, auteur, genre, estAdulte);
+                    response.sendRedirect("/documents");
+                } catch (NewDocException e) {
+                    request.setAttribute("erreur_ajout", e.getMessage());
+                    request.getRequestDispatcher("/ajouter_dvd.jsp").forward(request, response);
+                }
+            } else {
+                response.sendRedirect("/login");
+            }
+        } else {
+            response.sendRedirect("/login");
         }
     }
 
-    public void destroy() {
-    }*/
+    public void destroy() { }
 }
